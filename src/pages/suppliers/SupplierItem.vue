@@ -1,7 +1,6 @@
 <template>
   <li>
     <h3>{{ name }}</h3>
-    <p>{{ description }}</p>
     <div class="actions">
       <base-button link :to="supplierDetailsLink">View Details</base-button>
     </div>
@@ -10,7 +9,7 @@
 
 <script>
 export default {
-  props: ['id', 'name', 'description'],
+  props: ['id', 'name'],
   computed: {
     supplierDetailsLink() {
       return this.$route.path + '/' + this.id;
@@ -21,6 +20,9 @@ export default {
 
 <style scoped>
 li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 1rem 0;
   border: 1px solid #424242;
   border-radius: 12px;

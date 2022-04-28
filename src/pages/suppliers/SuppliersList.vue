@@ -19,7 +19,6 @@
             :key="supplier.id"
             :id="supplier.id"
             :name="supplier.name"
-            :description="supplier.description"
           ></supplier-item>
         </ul>
         <h3 v-else>No Suppliers found.</h3>
