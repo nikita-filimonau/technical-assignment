@@ -1,13 +1,18 @@
 <template>
+  <div>
+    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+      <p>{{ JSON.stringify(error) }}</p>
+    </base-dialog>
+    <base-dialog :show="!!isLoading" title="Authenticating..." fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
   <section>
     <base-card>
-      <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
       <h2>Sign In</h2>
       <sign-in-form @sign-in="signIn"></sign-in-form>
     </base-card>
   </section>
+  </div>
 </template>
 
 <script>
@@ -21,23 +26,19 @@ export default {
     ...mapGetters('users', ['error', 'isAuthenticated', 'isLoading']),
   },
   watch: {
-    error(curValue){
-      // TODO create modal for better error
-      console.log(curValue)
-      if (curValue) alert(curValue);
-    },
     isAuthenticated(curValue, oldValue){
-      console.log('isAuthenticated');
-      console.log(curValue);
       if (curValue && curValue !== oldValue) {
         this.$router.replace('/suppliers');
       }
     }
   },
   methods: {
-    ...mapActions('users', ['loginUser']),
+    ...mapActions('users', ['loginUser', 'clearError']),
     async signIn(data) {
       await this.loginUser(data);
+    },
+    handleError(){
+      this.clearError();
     }
   }
 };

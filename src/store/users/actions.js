@@ -98,5 +98,8 @@ export default {
       console.log('test');
       context.commit('setUser', null)
       await clearStorage();
+  },
+  clearError(context){
+      context.commit('setError', null);
   }
 };

@@ -33,7 +33,6 @@
 <script>
 import QuoteItem from './QuoteItem';
 import { mapActions, mapGetters } from 'vuex';
-import BasePagination from "@/components/ui/BasePagination";
 export default {
   data() {
     return {
@@ -42,7 +41,6 @@ export default {
   },
   components: {
     QuoteItem,
-    BasePagination,
   },
   watch: {
     page(curValue, oldValue){

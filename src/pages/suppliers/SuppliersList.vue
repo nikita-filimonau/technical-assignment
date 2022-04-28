@@ -30,7 +30,6 @@
 <script>
 import SupplierItem from './SupplierItem';
 import { mapActions, mapGetters } from 'vuex';
-import BasePagination from "@/components/ui/BasePagination";
 export default {
   data() {
     return {
@@ -38,7 +37,6 @@ export default {
     };
   },
   components: {
-    BasePagination,
     SupplierItem,
   },
   watch: {
