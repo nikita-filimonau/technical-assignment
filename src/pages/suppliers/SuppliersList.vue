@@ -79,7 +79,7 @@ ul {
 .controls {
   display: flex;
   position: sticky;
-  top: 0;
+  top: 10px;
   background-color: $picton-blue-light;
   border: 1px solid $denim;
   padding: 10px;
