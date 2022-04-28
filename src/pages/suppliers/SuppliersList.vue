@@ -3,7 +3,7 @@
     <section>
       <base-card>
         <div class="controls">
-          <base-button mode="outline" @click="loadPage">Refresh</base-button>
+          <base-button @click="loadPage">Refresh</base-button>
           <base-pagination
               :page="page"
               :pages="pages"
@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 ul {
   list-style: none;
   margin: 0;
@@ -78,6 +78,12 @@ ul {
 
 .controls {
   display: flex;
+  position: sticky;
+  top: 0;
+  background-color: $picton-blue-light;
+  border: 1px solid $denim;
+  padding: 10px;
+  border-radius: 10px;
   justify-content: space-between;
 }
 </style>
