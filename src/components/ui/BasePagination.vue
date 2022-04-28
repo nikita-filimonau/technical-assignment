@@ -14,7 +14,7 @@
           > {{pageNumber}} </button>
         </li>
         <li class="page-item">
-          <button type="button" @click="pageNext" v-if="page < pagesArray.length" class="page-link"> Next </button>
+          <button type="button" @click="pageNext" v-if="page < this.pages" class="page-link"> Next </button>
         </li>
       </ul>
     </nav>
@@ -67,15 +67,12 @@ ul {
   display: flex;
   align-items: center;
 }
-.pagination {
-}
-.page-link {
-	display: inline-block;
-}
 
 .page-link {
     font-size: 20px;
     color: $denim;
+    border: 1px solid $denim;
+    background-color: $white;
     font-weight: 500;
 }
 .current{
