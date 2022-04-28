@@ -1,24 +1,35 @@
-# technical_assignment
+<p align="center">
+  <a href="https://gist.github.com/ogurtsov/02ae77463fc21531133bb7fee7d54461">
+    <img alt="Technical assignment" src="https://cityonfire.com/wp-content/uploads/2019/10/technical.jpg" width="700" />
+  </a>
+</p>
+<h1 align="center">
+  Technical assignment
+</h1>
+
+## Technical assignment
+[Task](https://gist.github.com/ogurtsov/02ae77463fc21531133bb7fee7d54461)
+
+## Prerequisites
+- node version 12 - 16
+- yarn
 
 ## Project setup
 ```
-npm install
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
