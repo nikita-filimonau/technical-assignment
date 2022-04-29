@@ -2,7 +2,7 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <button type="button" class="page-link" v-if="page!= 1" @click="pageBack"> Previous </button>
+          <button type="button" class="page-link" v-if="page!= 1" @click="pageStep(-1)"> Previous </button>
         </li>
         <li class="page-item">
           <button
@@ -14,7 +14,7 @@
           > {{pageNumber}} </button>
         </li>
         <li class="page-item">
-          <button type="button" @click="pageNext" v-if="page < this.pages" class="page-link"> Next </button>
+          <button type="button" @click="pageStep(1)" v-if="page < this.pages" class="page-link"> Next </button>
         </li>
       </ul>
     </nav>
@@ -29,12 +29,8 @@ export default {
     }
   },
   methods: {
-    pageBack(){
-      const newPage = this.page - 1;
-      this.$emit('change-page', newPage);
-    },
-    pageNext(){
-      const newPage = this.page + 1;
+    pageStep(step) {
+      const newPage = this.page + step;
       this.$emit('change-page', newPage);
     },
     changePage(pageNumber){
