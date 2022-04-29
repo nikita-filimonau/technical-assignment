@@ -1,5 +1,5 @@
 import fetch from "@/utils/fetch";
-import API from "@/constants/api";
+import UserService from './service';
 import {clearStorage, getItem} from '@/utils/localStorage';
 import {TOKEN} from "@/constants/localStorage";
 
@@ -13,12 +13,7 @@ export default {
    loginUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    return fetch
-      .fetch({
-        urlPostfix: `${API.LOGIN}`,
-        method: 'POST',
-        body: data,
-      })
+    return UserService.loginUser(data)
       .then(response => {
           fetch.token = response?.token;
           context.commit(SET_USER, response);
@@ -33,10 +28,7 @@ export default {
   loadUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    fetch
-      .fetch({
-        urlPostfix: `${API.USERS}${data}`,
-      })
+    UserService.loadUser(data)
       .then(response => context.commit(SET_USER, response))
       .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
@@ -47,12 +39,7 @@ export default {
   createUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    return fetch
-      .fetch({
-        urlPostfix: API.USERS,
-        method: 'POST',
-        body: data,
-      })
+    return UserService.createUser(data)
       .then(response => {
         fetch.token = response?.auth_token;
         context.commit(SET_USER, response);
@@ -67,12 +54,7 @@ export default {
   updateUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    fetch
-      .fetch({
-        urlPostfix: `${API.USERS}${data?.id}`,
-        method: 'PUT',
-        body: data,
-      })
+    UserService.updateUser(data)
       .then(response => context.commit(SET_USER, response))
       .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
@@ -83,11 +65,7 @@ export default {
   deleteUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    fetch
-      .fetch({
-        urlPostfix: `${API.USERS}${data.id}`,
-        method: 'DELETE',
-      })
+    UserService.deleteUser(data)
       .then(() => context.commit(SET_USER, null))
       .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
