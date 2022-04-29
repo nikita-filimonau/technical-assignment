@@ -2,7 +2,7 @@ import fetch from "@/utils/fetch";
 import API from "@/constants/api";
 
 export default {
-  async loadSuppliers(context, data) {
+  loadSuppliers(context, data) {
     context.commit('setStartLoad');
     fetch
       .fetch({
@@ -19,7 +19,7 @@ export default {
         context.commit('setFinishLoad')
       });
   },
-  async loadSupplier(context, data) {
+  loadSupplier(context, data) {
     const supplier = context.state.suppliers.find(item => item.id === data);
     if (supplier) {
       context.commit('setSupplier', supplier);

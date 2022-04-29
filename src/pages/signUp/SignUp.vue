@@ -34,8 +34,8 @@ export default {
   },
   methods: {
     ...mapActions('users', ['createUser', 'clearError']),
-    async signUp(data) {
-      await this.createUser(data);
+    signUp(data) {
+      this.createUser(data);
     },
     handleError(){
       this.clearError();

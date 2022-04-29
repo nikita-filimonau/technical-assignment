@@ -4,7 +4,7 @@ import {clearStorage, getItem} from '@/utils/localStorage';
 import {TOKEN} from "@/constants/localStorage";
 
 export default {
-  async loginUser(context, data) {
+   loginUser(context, data) {
     context.commit('setStartLoad');
     context.commit('setError', null);
     fetch
@@ -23,7 +23,7 @@ export default {
         context.commit('setFinishLoad')
       });
   },
-  async loadUser(context, data) {
+  loadUser(context, data) {
     context.commit('setStartLoad');
     context.commit('setError', null);
     fetch
@@ -37,7 +37,7 @@ export default {
         context.commit('setFinishLoad')
       });
   },
-  async createUser(context, data) {
+  createUser(context, data) {
     context.commit('setStartLoad');
     context.commit('setError', null);
     fetch
@@ -56,7 +56,7 @@ export default {
         context.commit('setFinishLoad')
       });
   },
-  async updateUser(context, data) {
+  updateUser(context, data) {
     context.commit('setStartLoad');
     context.commit('setError', null);
     fetch
@@ -72,7 +72,7 @@ export default {
         context.commit('setFinishLoad')
       });
   },
-  async deleteUser(context, data) {
+  deleteUser(context, data) {
     context.commit('setStartLoad');
     context.commit('setError', null);
     fetch

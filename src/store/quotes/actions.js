@@ -2,7 +2,7 @@ import fetch from "@/utils/fetch";
 import API from "@/constants/api";
 
 export default {
-  async loadQuotes(context, data) {
+  loadQuotes(context, data) {
     context.commit('setStartLoad');
     fetch
       .fetch({

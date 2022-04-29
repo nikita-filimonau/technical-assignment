@@ -34,8 +34,8 @@ export default {
   },
   methods: {
     ...mapActions('users', ['loginUser', 'clearError']),
-    async signIn(data) {
-      await this.loginUser(data);
+    signIn(data) {
+      this.loginUser(data);
     },
     handleError(){
       this.clearError();
