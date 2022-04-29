@@ -4,9 +4,7 @@
     <transition name="dialog">
       <dialog open v-if="show">
         <header>
-          <slot name="header">
-            <h2>{{ title }}</h2>
-          </slot>
+          <h2>{{ title }}</h2>
         </header>
         <section>
           <slot></slot>

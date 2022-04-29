@@ -3,10 +3,16 @@ import API from "@/constants/api";
 import {clearStorage, getItem} from '@/utils/localStorage';
 import {TOKEN} from "@/constants/localStorage";
 
+const START_LOAD = 'setStartLoad';
+const FINISH_LOAD = 'setFinishLoad';
+const SET_ERROR = 'setError';
+const SET_USER = 'setUser';
+const FETCH_TIMESTAMP = 'setFetchTimestamp';
+
 export default {
    loginUser(context, data) {
-    context.commit('setStartLoad');
-    context.commit('setError', null);
+    context.commit(START_LOAD);
+    context.commit(SET_ERROR, null);
     fetch
       .fetch({
         urlPostfix: `${API.LOGIN}`,
@@ -15,31 +21,31 @@ export default {
       })
       .then(response => {
           fetch.token = response?.token;
-          context.commit('setUser', response);
+          context.commit(SET_USER, response);
       })
-      .catch(error => context.commit('setError', error))
+      .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
-        context.commit('setFetchTimestamp')
-        context.commit('setFinishLoad')
+        context.commit(FETCH_TIMESTAMP)
+        context.commit(FINISH_LOAD)
       });
   },
   loadUser(context, data) {
-    context.commit('setStartLoad');
-    context.commit('setError', null);
+    context.commit(START_LOAD);
+    context.commit(SET_ERROR, null);
     fetch
       .fetch({
         urlPostfix: `${API.USERS}${data}`,
       })
-      .then(response => context.commit('setUser', response))
-      .catch(error => context.commit('setError', error))
+      .then(response => context.commit(SET_USER, response))
+      .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
-        context.commit('setFetchTimestamp')
-        context.commit('setFinishLoad')
+        context.commit(FETCH_TIMESTAMP)
+        context.commit(FINISH_LOAD)
       });
   },
   createUser(context, data) {
-    context.commit('setStartLoad');
-    context.commit('setError', null);
+    context.commit(START_LOAD);
+    context.commit(SET_ERROR, null);
     fetch
       .fetch({
         urlPostfix: API.USERS,
@@ -48,58 +54,57 @@ export default {
       })
       .then(response => {
         fetch.token = response?.auth_token;
-        context.commit('setUser', response)
+        context.commit(SET_USER, response)
       })
-      .catch(error => context.commit('setError', error))
+      .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
-        context.commit('setFetchTimestamp')
-        context.commit('setFinishLoad')
+        context.commit(FETCH_TIMESTAMP)
+        context.commit(FINISH_LOAD)
       });
   },
   updateUser(context, data) {
-    context.commit('setStartLoad');
-    context.commit('setError', null);
+    context.commit(START_LOAD);
+    context.commit(SET_ERROR, null);
     fetch
       .fetch({
         urlPostfix: `${API.USERS}${data?.id}`,
         method: 'PUT',
         body: data,
       })
-      .then(response => context.commit('setUser', response))
-      .catch(error => context.commit('setError', error))
+      .then(response => context.commit(SET_USER, response))
+      .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
-        context.commit('setFetchTimestamp')
-        context.commit('setFinishLoad')
+        context.commit(FETCH_TIMESTAMP)
+        context.commit(FINISH_LOAD)
       });
   },
   deleteUser(context, data) {
-    context.commit('setStartLoad');
-    context.commit('setError', null);
+    context.commit(START_LOAD);
+    context.commit(SET_ERROR, null);
     fetch
       .fetch({
         urlPostfix: `${API.USERS}${data.id}`,
         method: 'DELETE',
       })
-      .then(() => context.commit('setUser', null))
-      .catch(error => context.commit('setError', error))
+      .then(() => context.commit(SET_USER, null))
+      .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
-        context.commit('setFetchTimestamp')
-        context.commit('setFinishLoad')
+        context.commit(FETCH_TIMESTAMP)
+        context.commit(FINISH_LOAD)
       });
   },
   async checkUserToken(context) {
       const token = await getItem(TOKEN);
       if (token) {
           fetch.token = token;
-          context.commit('setUser', { auth_token: token })
+          context.commit(SET_USER, { auth_token: token })
       }
   },
   async userLogOut(context) {
-      console.log('test');
-      context.commit('setUser', null)
+      context.commit(SET_USER, null)
       await clearStorage();
   },
   clearError(context){
-      context.commit('setError', null);
+      context.commit(SET_ERROR, null);
   }
 };
