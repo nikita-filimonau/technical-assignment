@@ -1,6 +1,6 @@
 <template>
   <the-header
-      :login="!!isAuthenticated"
+      :login="isAuthenticated"
       @logout="logout"
   ></the-header>
   <router-view v-slot="slotProps">

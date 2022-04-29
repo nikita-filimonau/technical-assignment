@@ -14,7 +14,7 @@
          <router-link to="/signup" v-else>Sign Up</router-link>
         </li>
         <li>
-          <base-button v-show="login" @click="logout">Logout</base-button>
+          <base-button v-if="login" @click="$emit('logout')">Logout</base-button>
         </li>
       </ul>
     </nav>
@@ -24,11 +24,6 @@
 <script>
 export default {
   emits: ['logout'],
-  methods: {
-    logout(){
-      this.$emit('logout');
-    },
-  },
   props: {
     login: {
       type: Boolean,
