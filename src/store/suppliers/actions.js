@@ -1,5 +1,4 @@
-import fetch from "@/utils/fetch";
-import API from "@/constants/api";
+import SupplierService from './service';
 
 const START_LOAD = 'setStartLoad';
 const FINISH_LOAD = 'setFinishLoad';
@@ -11,11 +10,7 @@ const SET_COUNT = 'setCount';
 export default {
   loadSuppliers(context, data) {
     context.commit(START_LOAD);
-    fetch
-      .fetch({
-        urlPostfix: API.SUPPLIERS,
-        params: data,
-      })
+    SupplierService.loadSuppliers(data)
       .then(response => {
         context.commit(SET_COUNT, response?.count);
         context.commit(SET_SUPPLIERS, response?.results);
@@ -32,10 +27,7 @@ export default {
       context.commit(SET_SUPPLIER, supplier);
     } else {
       context.commit(START_LOAD);
-      fetch
-          .fetch({
-            urlPostfix: `${API.SUPPLIERS}${data}/`,
-          })
+      SupplierService.loadSupplier(data)
           .then(response => context.commit(SET_SUPPLIER, response))
           .catch(console.log)
           .finally(() => {

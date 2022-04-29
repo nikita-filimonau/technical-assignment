@@ -1,5 +1,4 @@
-import fetch from "@/utils/fetch";
-import API from "@/constants/api";
+import QuoteService from './service';
 
 const START_LOAD = 'setStartLoad';
 const FINISH_LOAD = 'setFinishLoad';
@@ -10,11 +9,7 @@ const SET_COUNT = 'setCount';
 export default {
   loadQuotes(context, data) {
     context.commit(START_LOAD);
-    fetch
-      .fetch({
-        urlPostfix: API.QUOTES,
-        params: data,
-      })
+    QuoteService.loadQuotes(data)
       .then(response => {
         context.commit(SET_COUNT, response?.count);
         context.commit(SET_QUOTES, response?.results);
