@@ -13,7 +13,7 @@ export default {
    loginUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    fetch
+    return fetch
       .fetch({
         urlPostfix: `${API.LOGIN}`,
         method: 'POST',
@@ -22,6 +22,7 @@ export default {
       .then(response => {
           fetch.token = response?.token;
           context.commit(SET_USER, response);
+          return response;
       })
       .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {
@@ -46,7 +47,7 @@ export default {
   createUser(context, data) {
     context.commit(START_LOAD);
     context.commit(SET_ERROR, null);
-    fetch
+    return fetch
       .fetch({
         urlPostfix: API.USERS,
         method: 'POST',
@@ -54,7 +55,8 @@ export default {
       })
       .then(response => {
         fetch.token = response?.auth_token;
-        context.commit(SET_USER, response)
+        context.commit(SET_USER, response);
+        return response;
       })
       .catch(error => context.commit(SET_ERROR, error))
       .finally(() => {

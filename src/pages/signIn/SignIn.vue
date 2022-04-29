@@ -25,17 +25,12 @@ export default {
   computed: {
     ...mapGetters('users', ['error', 'isAuthenticated', 'isLoading']),
   },
-  watch: {
-    isAuthenticated(curValue, oldValue){
-      if (curValue && curValue !== oldValue) {
-        this.$router.replace('/suppliers');
-      }
-    }
-  },
   methods: {
     ...mapActions('users', ['loginUser', 'clearError']),
     signIn(data) {
-      this.loginUser(data);
+      this.loginUser(data).then(() => {
+        this.$router.replace('/suppliers');
+      });
     },
     handleError(){
       this.clearError();
